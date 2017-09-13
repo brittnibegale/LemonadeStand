@@ -16,7 +16,7 @@ namespace LemonadeStand
         }
         public override int GetItemAmount()
         {
-            Console.WriteLine("Each cup costs .20 cents. How many lemons do you want to buy? Enter number values only.");
+            Console.WriteLine("Each lemon costs .20 cents. How many lemons do you want to buy? Enter number values only.");
             userInput = Console.ReadLine();
             while (!int.TryParse(userInput, out amountOfLemons))
             {

@@ -6,28 +6,20 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class Player : IRecipe
+    public abstract class Player : IRecipe
     {
-        string name;
-        double moneyBank = 20.00;
+        public string name;
+        public double moneyBank = 20.00;
         public Player()
         {
-            
+            SetPlayersName();
         }
-        public void SetRecipe()
-        {
+        public abstract void SetRecipe();
 
-        }
-        public void SetPlayersName()
-        {
-            Console.WriteLine("What is your name?");
-            name = Console.ReadLine();
-        }
+        public abstract void SetPlayersName();
 
-        public void GetIngredients()
-        {
-            Inventory ingredients = new Inventory();
-            ingredients.CountIngredients(moneyBank);
-        }
+
+        public abstract void GetInventory();
+       
     }
 }

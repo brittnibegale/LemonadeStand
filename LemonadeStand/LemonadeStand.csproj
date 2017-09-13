@@ -43,10 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Computer.cs" />
     <Compile Include="Cups.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Human.cs" />
     <Compile Include="Ice.cs" />
     <Compile Include="IRecipe.cs" />
     <Compile Include="Inventory.cs" />
