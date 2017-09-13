@@ -8,5 +8,14 @@ namespace LemonadeStand
 {
     public class Inventory
     {
+        public Inventory()
+        {
+        }
+
+        public void CountIngredients(double moneyBank)
+        {
+            Store visit = new Store();
+            visit.BuyIngredients(moneyBank);
+        }
     }
 }

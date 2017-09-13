@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class UserInterface
+    public abstract class Item
     {
+        
+        public Item()
+        {
+        }
+        public abstract int GetItemAmount();
+       
     }
 }

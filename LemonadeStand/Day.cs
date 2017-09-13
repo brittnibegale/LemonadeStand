@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Day
+    public class Day
     {
+        public Day()
+        {
+
+        }
+        public void Day1()
+        {
+            Weather day1 = new Weather();
+            day1.DisplayWeather(1);
+        }
     }
 }
