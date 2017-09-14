@@ -42,7 +42,7 @@ namespace LemonadeStand
         {
             Item iceBoughtAmount = new Ice();
             boughtIce = iceBoughtAmount.GetItemBoughtAmount();
-            player.moneyBank.money = GetCost(boughtIce, .1,player);
+            player.moneyBank.money = GetCost(boughtIce, .1, player);
             return boughtIce;
         }
 
@@ -64,7 +64,7 @@ namespace LemonadeStand
             Console.WriteLine("Sorry, you do not have enough money.");
             Console.ReadLine();
                 return moneyBank;
-            //make it so they can re-enter how much they want to buy or just move on to the next item.
+            //make it so they can re-enter how much they want to buy or just move on to the next item.//this could be accomplished by creating a menu
         }
         public double GetCost(int item, double cost, Player player)
         {

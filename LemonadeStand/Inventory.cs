@@ -18,9 +18,10 @@ namespace LemonadeStand
         
         public void DisplayInventory(int lemons, int ice, int sugar, int cups)
         {
-            Console.WriteLine("You have " + lemons + " lemons in your inventory." + "You have " + ice + " ice cubes in your inventory." + "You have " + sugar + "packets of sugar in your inventory." + "You have " + cups + "cups in your inventory.");
+            Console.WriteLine("You have " + lemons + " lemons in your inventory." + "You have " + ice + " ice cubes in your inventory." + "You have " + sugar + " packets of sugar in your inventory." + "You have " + cups + " cups in your inventory.");
             Console.ReadLine();
         }
+
         public void AddLemonList(int item)
         {
             for (int i = 0; i < item; i++)

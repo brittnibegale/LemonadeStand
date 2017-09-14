@@ -27,9 +27,9 @@ namespace LemonadeStand
       
         public override void SetRecipe()
         {
-            removeLemons = recipe.LemonRecipe();
-            removeSugar = recipe.SugarRecipe();
-            removeIce = recipe.IceRecipe();
+            removeLemons = recipe.LemonRecipe(countOfLemonList);
+            removeSugar = recipe.SugarRecipe(countOfSugarList);
+            removeIce = recipe.IceRecipe(countOfIceList);
         }
         public override void SetPlayersName()
         {
