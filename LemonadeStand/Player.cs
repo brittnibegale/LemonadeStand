@@ -6,20 +6,27 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public abstract class Player : IRecipe
+    public abstract class Player 
     {
         public string name;
-        public double moneyBank = 20.00;
+        public Wallet moneyBank;
+        public Inventory inventoryList;
         public Player()
         {
             SetPlayersName();
+            GetPlayersMoney();
+            moneyBank = new Wallet();
         }
         public abstract void SetRecipe();
 
         public abstract void SetPlayersName();
 
+        public abstract void GetPlayersMoney();
 
-        public abstract void GetInventory();
-       
+
+        public abstract void AddInventory(int amountOfCups, int amountOfIce, int amountOfLemons, int amountOfSugar);
+
+        public abstract void DisplayInventoryFromInventory();
+
     }
 }

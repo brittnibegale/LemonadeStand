@@ -14,7 +14,7 @@ namespace LemonadeStand
         {
 
         }
-        public override int GetItemAmount()
+        public override int GetItemBoughtAmount()
         {
             Console.WriteLine("Each sugar packet costs .10 cents. How many sugar packets do you want to buy? Enter number values only.");
             userInput = Console.ReadLine();

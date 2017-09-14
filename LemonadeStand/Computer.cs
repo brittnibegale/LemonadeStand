@@ -21,9 +21,18 @@ namespace LemonadeStand
             name = "Computer";
         }
 
-        public override void GetInventory()
+        public override void AddInventory(int amountOfCups, int amountOfIce, int amountOfLemons, int amountOfSugar)
         {
             Inventory inventory = new Inventory();
+        }
+
+        public override void GetPlayersMoney()
+        {
+            Wallet money = new Wallet(); 
+        }
+        public override void DisplayInventoryFromInventory()
+        {
+
         }
     }
 }

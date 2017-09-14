@@ -12,7 +12,7 @@ namespace LemonadeStand
         public Item()
         {
         }
-        public abstract int GetItemAmount();
+        public abstract int GetItemBoughtAmount();
        
     }
 }

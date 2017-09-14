@@ -22,37 +22,36 @@ namespace LemonadeStand
         {
             this.player = player1;
         }
-        public void BuyLemons(Player player)
+        public int BuyLemons(Player player)
         {
-            Item lemonAmount = new Lemons();
-            boughtLemons = lemonAmount.GetItemAmount();
-            player.moneyBank = GetCost(boughtLemons, .2);
-            LemonList(boughtLemons);
-
+            Item lemonBoughtAmount = new Lemons();
+            boughtLemons = lemonBoughtAmount.GetItemBoughtAmount();
+            player.moneyBank.money = GetCost(boughtLemons, .2, player);
+            return boughtLemons;
         }
 
-        public void BuySugar(Player player)
+        public int BuySugar(Player player)
         {
-            Item sugarAmount = new Sugar();
-            boughtSugar = sugarAmount.GetItemAmount();
-            player.moneyBank = GetCost(boughtSugar, .1);
-            SugarList(boughtSugar);
+            Item sugarBoughtAmount = new Sugar();
+            boughtSugar = sugarBoughtAmount.GetItemBoughtAmount();
+            player.moneyBank.money = GetCost(boughtSugar, .1, player);
+            return boughtSugar;
         }
 
-        public void BuyIce(Player player)
+        public int BuyIce(Player player)
         {
-            Item iceAmount = new Ice();
-            boughtIce = iceAmount.GetItemAmount();
-            player.moneyBank = GetCost(boughtIce, .1);
-            IceList(boughtIce);
+            Item iceBoughtAmount = new Ice();
+            boughtIce = iceBoughtAmount.GetItemBoughtAmount();
+            player.moneyBank.money = GetCost(boughtIce, .1,player);
+            return boughtIce;
         }
 
-        public void BuyCups(Player player)
+        public int BuyCups(Player player)
         {
-            Item cupAmount = new Cups();
-            boughtCups = cupAmount.GetItemAmount();
-            player.moneyBank = GetCost(boughtCups, .1);
-            CupList(boughtCups);
+            Item cupBoughtAmount = new Cups();
+            boughtCups = cupBoughtAmount.GetItemBoughtAmount();
+            player.moneyBank.money = GetCost(boughtCups, .1, player);
+            return boughtCups;
         }
 
         public double CheckForMoney(double costOfItems, double moneyBank)
@@ -67,45 +66,13 @@ namespace LemonadeStand
                 return moneyBank;
             //make it so they can re-enter how much they want to buy or just move on to the next item.
         }
-        public double GetCost(int item, double cost)
+        public double GetCost(int item, double cost, Player player)
         {
             costOfItems = item * cost;
-            player.moneyBank = CheckForMoney(costOfItems, player.moneyBank);
-            return player.moneyBank;
+            player.moneyBank.money = CheckForMoney(costOfItems, player.moneyBank.money);
+            return player.moneyBank.money;
         }
 
-        public void LemonList(int item)
-        {
-            List<Lemons> lemon = new List<Lemons>();
-            for(int i = 0; i < item; i++)
-            {
-                lemon.Add(new Lemons());
-            }
-        }
-
-        public void SugarList(int item)
-        {
-            List<Sugar> sugar = new List<Sugar>();
-            for (int i = 0; i < item; i++)
-            {
-                sugar.Add(new Sugar());
-            }
-        }
-        public void IceList(int item)
-        {
-            List<Ice> ice = new List<Ice>();
-            for (int i = 0; i < item; i++)
-            {
-                ice.Add(new Ice());
-            }
-        }
-        public void CupList(int item)
-        {
-            List<Cups> cup = new List<Cups>();
-            for (int i = 0; i < item; i++)
-            {
-                cup.Add(new Cups());
-            }
-        }
+       
     }
 }
