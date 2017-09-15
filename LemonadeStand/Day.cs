@@ -11,8 +11,12 @@ namespace LemonadeStand
         List<int> days = new List<int>();
         public int updatedDayCount;
         Weather today = new Weather();
+        Customer todaysCustomers = new Customer();
         int weatherDay;
-        
+        int weatherEffectedCustomers;
+        int todaysActualTotalCustomers;
+
+
         public Day()
         {
             GenerateDay(8);
@@ -69,10 +73,11 @@ namespace LemonadeStand
             }
         }
 
-        public void CompareWeatherToRecipe(List<int>recipe)
+        public void SendRecipeToWeatherAndCustomer(List<int>recipe)
         {
-
-
+            weatherEffectedCustomers = today.CompareWeatherToRecipe(recipe, weatherDay);
+            todaysCustomers.CompareRecipeToCustomers(recipe, weatherEffectedCustomers);
+            todaysActualTotalCustomers = todaysCustomers.SetAmountOfServedCustomers();
         }
     }
 }

@@ -9,7 +9,6 @@ namespace LemonadeStand
     
     public class Human: Player
     {
-        Inventory inventoryList = new Inventory();
         Recipe recipe = new Recipe();
         int removeLemons;
         int removeSugar;

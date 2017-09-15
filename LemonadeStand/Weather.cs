@@ -8,6 +8,7 @@ namespace LemonadeStand
 {
     public class Weather
     {
+        int effectedCustomers;
         public Weather()
         {
         }
@@ -53,6 +54,55 @@ namespace LemonadeStand
                     break;
             }
             return day;
+        }
+        public int CompareWeatherToRecipe(List<int> recipe, int weatherDay)
+        {
+            if (weatherDay == 1 || weatherDay == 3 || weatherDay == 7)
+            {
+                if (recipe[2] >= 5)
+                {
+                    effectedCustomers = 0;
+                }
+                else if (recipe[2] < 5 && recipe[2] >= 3)
+                {
+                    effectedCustomers = 5;
+                }
+                else if (recipe[2] < 3)
+                {
+                    effectedCustomers = 7;
+                }
+            }
+            else if (weatherDay == 4 || weatherDay == 5)
+            {
+                if (recipe[2] >= 5)
+                {
+                    effectedCustomers = 5;
+                }
+                else if (recipe[2] < 5 && recipe[2] >= 3)
+                {
+                    effectedCustomers = 0;
+                }
+                else if (recipe[2] < 3)
+                {
+                    effectedCustomers = 7;
+                }
+            }
+            else if (weatherDay == 6 || weatherDay == 2)
+            {
+                if (recipe[2] >= 5)
+                {
+                    effectedCustomers = 7;
+                }
+                else if (recipe[2] < 5 && recipe[2] >= 3)
+                {
+                    effectedCustomers = 5;
+                }
+                else if (recipe[2] < 3)
+                {
+                    effectedCustomers = 0;
+                }
+            }
+            return effectedCustomers;
         }
     }
 }

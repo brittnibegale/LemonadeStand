@@ -135,7 +135,7 @@ namespace LemonadeStand
             day.RemoveOneday();
             day.GetWeather();
             List<int> recipeList = player1.SetRecipe();
-            day.CompareWeatherToRecipe(recipeList);
+            day.SendRecipeToWeatherAndCustomer(recipeList);
         }
 
         public void GoToStore(Player player, Day day)

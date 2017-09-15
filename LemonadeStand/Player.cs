@@ -10,7 +10,7 @@ namespace LemonadeStand
     {
         public string name;
         public Wallet moneyBank;
-        public Inventory inventoryList;
+        public Inventory inventoryList = new Inventory();
         public Player()
         {
             SetPlayersName();
