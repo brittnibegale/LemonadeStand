@@ -19,17 +19,20 @@ namespace LemonadeStand
         int countOfSugarList = 0;
         int countOfIceList = 0;
         int countOfCupList = 0;
+        List<int> recipeList;
         public Human()
         {
             
             
         }
       
-        public override void SetRecipe()
+        public override List<int> SetRecipe()
         {
             removeLemons = recipe.LemonRecipe(countOfLemonList);
             removeSugar = recipe.SugarRecipe(countOfSugarList);
             removeIce = recipe.IceRecipe(countOfIceList);
+            recipeList = recipe.CreateList(removeLemons, removeSugar, removeIce);
+            return recipeList;
         }
         public override void SetPlayersName()
         {

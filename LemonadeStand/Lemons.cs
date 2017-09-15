@@ -24,7 +24,6 @@ namespace LemonadeStand
                 userInput = Console.ReadLine();
             }
             return amountOfLemons;
-
         }
     }
 }

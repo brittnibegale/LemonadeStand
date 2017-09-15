@@ -8,7 +8,7 @@ namespace LemonadeStand
 {
     public class Game
     {
-        string typeOfGame;
+        //string typeOfGame;
         //string multiplayerVersion;
         //string multiplayerPlayerNumber;
         int amountOfLemons;
@@ -31,7 +31,7 @@ namespace LemonadeStand
             Console.ReadLine();
             player1 = new Human();
             Day day = new Day();
-            MainMenu(player1);
+            MainMenu(player1, day);
             //Console.WriteLine("How would you like to play this game? In the single player mode you will only play against your self. In the multi player mode you can play against a computer or against upto 4 friends. \n Please, choose either single player or multi player.");
             //typeOfGame = Console.ReadLine().ToLower();
             //DetermineGameType(typeOfGame);
@@ -75,15 +75,15 @@ namespace LemonadeStand
         //}
      
 
-        public void MainMenu(Player player1)
+        public void MainMenu(Player player1, Day day)
         {
-            Console.WriteLine("What would you like to do? Go to the store? See today's weather again? See the inventory you currently have? Start game? Please enter store, weather, inventory, game");
+            Console.WriteLine("What would you like to do? Go to the store? See today's weather? See the inventory you currently have? Start game? Please enter store, weather, inventory, game");
             userInput = Console.ReadLine().ToLower();
             userInput = CheckMenuInput(userInput);
             switch (userInput)
             {
                 case "store":
-                    GoToStore(player1);
+                    GoToStore(player1, day);
 
                     break;
 
@@ -96,7 +96,7 @@ namespace LemonadeStand
                     break;
 
                 case "game":
-                    GamePlay(player1);
+                    GamePlay(player1, day);
 
                     break;
 
@@ -129,13 +129,16 @@ namespace LemonadeStand
             player.DisplayInventoryFromInventory();
         }
        
-        public void GamePlay(Player player)
+        public void GamePlay(Player player, Day day)
         {  
             player1.DisplayInventoryFromInventory();
-            player1.SetRecipe();
+            day.RemoveOneday();
+            day.GetWeather();
+            List<int> recipeList = player1.SetRecipe();
+            day.CompareWeatherToRecipe(recipeList);
         }
 
-        public void GoToStore(Player player)
+        public void GoToStore(Player player, Day day)
         {
             Store store = new Store(player);
             DisplayBankBalance(player.moneyBank.money);
@@ -148,13 +151,15 @@ namespace LemonadeStand
             amountOfSugar = store.BuySugar(player);
             DisplayBankBalance(player.moneyBank.money);
             player.AddInventory(amountOfCups, amountOfIce, amountOfLemons, amountOfSugar);
+            MainMenu(player, day);
         }
         public void DisplayBankBalance(double money)
         {
             Console.WriteLine("Your current bank balance is: $ " + money + ". Hit ENTER to continue.");
+
             Console.ReadLine();
         }
-        public int CheckForEnoughInventory(int items, int amountNeeded, Player player)
+        public int CheckForEnoughInventory(int items, int amountNeeded, Player player, Day day)
         {
             if (amountNeeded >= items)
             {
@@ -164,7 +169,7 @@ namespace LemonadeStand
             {
                 Console.WriteLine("You need to have at least " + amountNeeded + "Please go to the store and buy more. Hit ENTER to go there.");
                 Console.ReadLine();
-                MainMenu(player);
+                MainMenu(player, day);
                 return items;
             }
 

@@ -14,6 +14,8 @@ namespace LemonadeStand
         //int removeCups;
         string userInput;
         int amountOfItem;
+        List<int> recipeList = new List<int>();
+
         public Recipe()
         {
 
@@ -63,21 +65,30 @@ namespace LemonadeStand
             {
                 int newListAmount = listAmount - removeAmount;
 
-                if (listAmount < 5)
+                if (newListAmount >= 0)
                 {
-                    Console.WriteLine("You need to have at least 5 items of sugar, lemons, or ice in your inventory for a game to run.");
+                    return removeAmount;
                 }
                 else
                 {
-                    Console.WriteLine("Sorry, you do not have enough of that item in your inventory to make 5 pitchers of lemonade with that quantity. You have " + listAmount + " in your inventory. Please enter a number equal to less than " + listAmount/5);
+                    Console.WriteLine("Sorry, you do not have enough of that item in your inventory to make 5 pitchers of lemonade with that quantity. You have " + listAmount + " in your inventory. Please enter a number equal to less than " + listAmount / 5);
                     userInput = Console.ReadLine();
                     removeAmount = GetRemoveAmount(userInput);
+                    return removeAmount;
                 }
-              return removeAmount;
             }
+        }
             //CheckForMoney(listAmount, costOfItem);//make this method if we want to check cost of item
+            public List<int> CreateList(int lemons, int sugar, int ice)
+        {
+            recipeList.Add(lemons);
+            recipeList.Add(sugar);
+            recipeList.Add(ice);
+            return recipeList;
+
+        }
            
         }
       
     }
-}
+

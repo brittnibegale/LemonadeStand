@@ -8,13 +8,14 @@ namespace LemonadeStand
 {
     public class Computer: Player
     {
+        List<int> recipe;
         public Computer()
         {
 
         }
-        public override void SetRecipe()
+        public override List<int> SetRecipe()
         {
-
+            return recipe;
         }
         public override void SetPlayersName()
         {
