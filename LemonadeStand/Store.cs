@@ -8,10 +8,10 @@ namespace LemonadeStand
 {
     public class Store
     {
-        int boughtIce;
-        int boughtLemons;
-        int boughtSugar;
-        int boughtCups;
+        double boughtIce;
+        double boughtLemons;
+        double boughtSugar;
+        double boughtCups;
         double costOfItems;
         Player player;
         public Store()
@@ -22,7 +22,7 @@ namespace LemonadeStand
         {
             this.player = player1;
         }
-        public int BuyLemons(Player player)
+        public double BuyLemons(Player player)
         {
             Item lemonBoughtAmount = new Lemons();
             boughtLemons = lemonBoughtAmount.GetItemBoughtAmount();
@@ -30,7 +30,7 @@ namespace LemonadeStand
             return boughtLemons;
         }
 
-        public int BuySugar(Player player)
+        public double BuySugar(Player player)
         {
             Item sugarBoughtAmount = new Sugar();
             boughtSugar = sugarBoughtAmount.GetItemBoughtAmount();
@@ -38,7 +38,7 @@ namespace LemonadeStand
             return boughtSugar;
         }
 
-        public int BuyIce(Player player)
+        public double BuyIce(Player player)
         {
             Item iceBoughtAmount = new Ice();
             boughtIce = iceBoughtAmount.GetItemBoughtAmount();
@@ -46,7 +46,7 @@ namespace LemonadeStand
             return boughtIce;
         }
 
-        public int BuyCups(Player player)
+        public double BuyCups(Player player)
         {
             Item cupBoughtAmount = new Cups();
             boughtCups = cupBoughtAmount.GetItemBoughtAmount();
@@ -54,25 +54,45 @@ namespace LemonadeStand
             return boughtCups;
         }
 
-        public double CheckForMoney(double costOfItems, double moneyBank)
-        {
-            moneyBank = moneyBank - costOfItems;
-            while (moneyBank > 0)
-            {
-                return moneyBank;
-            }
-            Console.WriteLine("Sorry, you do not have enough money.");
-            Console.ReadLine();
-                return moneyBank;
-            //make it so they can re-enter how much they want to buy or just move on to the next item.//this could be accomplished by creating a menu
-        }
-        public double GetCost(int item, double cost, Player player)
+        public double GetCost(double item, double cost, Player player)
         {
             costOfItems = item * cost;
             player.moneyBank.money = CheckForMoney(costOfItems, player.moneyBank.money);
             return player.moneyBank.money;
         }
+        public double CheckForMoney(double costOfItems, double moneyBank)
+        {
+            moneyBank = moneyBank - costOfItems;
+            while (moneyBank >= 0)
+            {
+                return moneyBank;
+            }
+            Console.WriteLine("Sorry, you do not have enough money. Would you like to continue the game? yes or no");
+            string userInput = Console.ReadLine().ToLower();
+            while (true)
+            {
+                if (userInput != "yes" || userInput != "no")
+                {
+                    Console.WriteLine("Please type yes or no for the game to continue or not.");
+                    userInput = Console.ReadLine().ToLower();
+                }
+                WillGameContinue(userInput);
+            }
+        }
 
-       
+        public void WillGameContinue(string userInput)
+        {
+            if (userInput == "no")
+            {
+                Console.WriteLine("Thank you for playing Lemonade Stand.");
+                Console.ReadLine();
+            }
+            else
+            {
+               
+            }
+        }
+
+
     }
 }

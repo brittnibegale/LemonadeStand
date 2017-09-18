@@ -8,15 +8,15 @@ namespace LemonadeStand
 {
     public class Customer
     {
-        int numberOfPotentialCustomers;
-        int totaleffectedCustomers;
-        int totalCustomersThatBuy;
+        double numberOfPotentialCustomers;
+        double totaleffectedCustomers;
+        double totalCustomersThatBuy;
         public Customer()
         {
             numberOfPotentialCustomers = 60;
         }
 
-        public void CompareRecipeToCustomers(List<int>recipe, int weatherEffectedCustomers)
+        public void CompareRecipeToCustomers(List<double>recipe, double weatherEffectedCustomers)
         {
             if (recipe[0]-recipe[1] == 2)
             {
@@ -36,7 +36,7 @@ namespace LemonadeStand
             }
 
         }
-        public int SetAmountOfServedCustomers()
+        public double SetAmountOfServedCustomers()
         {
             totalCustomersThatBuy = numberOfPotentialCustomers - totaleffectedCustomers;
             return totalCustomersThatBuy;

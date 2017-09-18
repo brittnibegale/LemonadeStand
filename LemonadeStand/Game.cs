@@ -11,12 +11,19 @@ namespace LemonadeStand
         //string typeOfGame;
         //string multiplayerVersion;
         //string multiplayerPlayerNumber;
-        int amountOfLemons;
-        int amountOfSugar;
-        int amountOfCups;
-        int amountOfIce;
+        double amountOfLemons;
+        double amountOfSugar;
+        double amountOfCups;
+        double amountOfIce;
+        double countOfDaysCustomers;
+        int daysLeftInGame;
+        double pitchers;
+        double costOfCup;
+        double dailyProfit;
         string userInput;
+        double helpedCustomers;
         Player player1;
+        Day day;
         //Player player2;
         //Player player3;
         //Player player4;
@@ -26,11 +33,10 @@ namespace LemonadeStand
         }
         public void StartGame()
         {
-            Console.WriteLine("Welcome to Lemonade Stand! This game lasts for a week if you can make it! Everyday has different weather, which will effect how many people buy your lemonade. You have the ability to buy items and change the recipe to optimize how many people buy your lemonade. Hit ENTER to continue.");
-            //have a yes no here for database saving
+            Console.WriteLine("Welcome to Lemonade Stand! This game lasts for a week if you can make it! \n Everyday has different weather, which will effect how many people buy your lemonade.\n You have the ability to buy items and change the recipe to optimize how many people buy your lemonade.\n Hit ENTER to continue.");
             Console.ReadLine();
             player1 = new Human();
-            Day day = new Day();
+            day = new Day();
             MainMenu(player1, day);
             //Console.WriteLine("How would you like to play this game? In the single player mode you will only play against your self. In the multi player mode you can play against a computer or against upto 4 friends. \n Please, choose either single player or multi player.");
             //typeOfGame = Console.ReadLine().ToLower();
@@ -77,27 +83,25 @@ namespace LemonadeStand
 
         public void MainMenu(Player player1, Day day)
         {
-            Console.WriteLine("What would you like to do? Go to the store? See today's weather? See the inventory you currently have? Start game? Please enter store, weather, inventory, game");
+            Console.WriteLine("What would you like to do? Go to the store? See today's weather? See the inventory you currently have? Start game?\n Please enter store, weather, inventory, game");
             userInput = Console.ReadLine().ToLower();
             userInput = CheckMenuInput(userInput);
             switch (userInput)
             {
                 case "store":
                     GoToStore(player1, day);
-
                     break;
 
                 case "weather":
-
+                    DisplayWeather(player1, day);
                     break;
 
                 case "inventory":
-                    ShowInventory(player1);
+                    ShowInventory(player1, day);
                     break;
 
                 case "game":
                     GamePlay(player1, day);
-
                     break;
 
                 default:
@@ -124,18 +128,38 @@ namespace LemonadeStand
 
         }
 
-        public void ShowInventory(Player player)
+        public void ShowInventory(Player player, Day day)
         {
             player.DisplayInventoryFromInventory();
+            MainMenu(player, day);
         }
-       
-        public void GamePlay(Player player, Day day)
-        {  
-            player1.DisplayInventoryFromInventory();
-            day.RemoveOneday();
+
+        public void DisplayWeather(Player player, Day day)
+        {
             day.GetWeather();
-            List<int> recipeList = player1.SetRecipe();
-            day.SendRecipeToWeatherAndCustomer(recipeList);
+            MainMenu(player, day);
+        }
+
+        public void GamePlay(Player player, Day day)
+        {
+            //load game here
+            player1.DisplayInventoryFromInventory();
+            day.GetWeather();
+            List<double> recipeList = player1.SetRecipe();
+            costOfCup = player1.SetCostPerCup();
+            countOfDaysCustomers = day.SendRecipeToWeatherAndCustomer(recipeList);
+            pitchers = player.CheckForPitcherAmount();
+            FindHowManyCustomers();
+            player1.CalculateInventoryLoss(pitchers);
+            CalculateDaysProfit();
+            CalculateDaysGross();
+            CheckForEnoughMoneyToContinue();
+            daysLeftInGame = day.RemoveOneday();
+            CheckDaysLeft();
+            Console.WriteLine("You have " + day.updatedDayCount + " days left in the game. \n Hit ENTER to continue.");
+            Console.ReadLine();
+            //Save game here
+            MainMenu(player, day);
         }
 
         public void GoToStore(Player player, Day day)
@@ -151,29 +175,85 @@ namespace LemonadeStand
             amountOfSugar = store.BuySugar(player);
             DisplayBankBalance(player.moneyBank.money);
             player.AddInventory(amountOfCups, amountOfIce, amountOfLemons, amountOfSugar);
+            player.DisplayInventoryFromInventory();
+            CheckForEnoughInventory(player.inventoryList.lemons.Count(), 1);
+            CheckForEnoughInventory(player.inventoryList.sugar.Count(), 1);
+            CheckForEnoughInventory(player.inventoryList.ice.Count(), 1);
+            CheckForEnoughInventory(player.inventoryList.cup.Count(), 6);
             MainMenu(player, day);
         }
         public void DisplayBankBalance(double money)
         {
             Console.WriteLine("Your current bank balance is: $ " + money + ". Hit ENTER to continue.");
-
             Console.ReadLine();
         }
-        public int CheckForEnoughInventory(int items, int amountNeeded, Player player, Day day)
+       
+        public void CalculateDaysProfit()
         {
-            if (amountNeeded >= items)
+            dailyProfit = costOfCup * helpedCustomers;
+        }
+        public void CalculateDaysGross()
+        {
+            player1.moneyBank.money = dailyProfit + player1.moneyBank.money;
+        }
+        public void CheckDaysLeft()
+        {
+            if (daysLeftInGame >= 1)
             {
-                return items;
+                Console.WriteLine("Today you made $ " + dailyProfit + " and sold to " + helpedCustomers + " customers.");
+                Console.ReadLine();
+            }
+            else if (daysLeftInGame == 0)
+            {
+               string weekIsOver = "I hope you enjoyed playing Lemonade Stand! Your weekly profit was $ " + dailyProfit + ".";
+               EndGameRemarks(weekIsOver);
+            }
+        }
+
+        public void FindHowManyCustomers()
+        {
+            double possibleHelpedCustomers = 6 * pitchers;
+            if (possibleHelpedCustomers >= countOfDaysCustomers)
+            {
+                helpedCustomers = countOfDaysCustomers;
+            }
+            else if (possibleHelpedCustomers < countOfDaysCustomers)
+            {
+                helpedCustomers = possibleHelpedCustomers;
+            }
+        }
+
+        public void CheckForEnoughMoneyToContinue()
+        {
+            if (player1.moneyBank.money <= 0)
+            {
+                string moneyLost = "Thank you for playing. You do not have enough money to continue.";
+                EndGameRemarks(moneyLost);
             }
             else
             {
-                Console.WriteLine("You need to have at least " + amountNeeded + "Please go to the store and buy more. Hit ENTER to go there.");
-                Console.ReadLine();
-                MainMenu(player, day);
-                return items;
+                DisplayBankBalance(player1.moneyBank.money);
             }
-
         }
+
+        public void CheckForEnoughInventory(int listCount, double amountNeeded)
+        {
+            if(listCount < amountNeeded)
+            {
+                Console.WriteLine("You do not have enough inventory to complete one game.\n You need: \n 1 lemon \n 1 sugar packet \n 1 ice cube \n 6 cups \n You are getting sent back to the store.");
+                Console.ReadLine();
+                GoToStore(player1, day);
+            }
+            
+        }
+        public void EndGameRemarks(string endComments)
+        {
+            Console.WriteLine(endComments);
+            Console.ReadLine();
+        }
+
+        
+
         //public void DetermineMultiplayerGame(string multiplayerVersion)
         //{
         //    while (true)

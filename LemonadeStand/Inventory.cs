@@ -12,71 +12,102 @@ namespace LemonadeStand
         public List<Ice> ice = new List<Ice>();
         public List<Sugar> sugar = new List<Sugar>();
         public List<Cups> cup = new List<Cups>();// figure out how to move this to the constructor
+        int neededLemons;
+        int neededSugar;
+        int neededIce;
+        int neededCups;
+        double pitchers;
         public Inventory()
         {
         }
         
-        public void DisplayInventory(int lemons, int ice, int sugar, int cups)
+        public void DisplayInventory()
         {
-            Console.WriteLine("You have " + lemons + " lemons in your inventory." + "You have " + ice + " ice cubes in your inventory." + "You have " + sugar + " packets of sugar in your inventory." + "You have " + cups + " cups in your inventory.");
+            Console.WriteLine("You have " + lemons.Count + " lemons in your inventory." + "You have " + ice.Count + " ice cubes in your inventory." + "You have " + sugar.Count + " packets of sugar in your inventory." + "You have " + cup.Count + " cups in your inventory.");
             Console.ReadLine();
         }
 
-        public void AddLemonList(int item)
+        public void AddLemonList(double item)
         {
             for (int i = 0; i < item; i++)
             {
                 lemons.Add(new Lemons());
             }
         }
-        public void RemoveLemons(int item)
+        public void RemoveLemons(double item)
         {
             for (int i = 0; i < item; i++)
             {
-                lemons.Remove(new Lemons());
+                lemons.RemoveAt(0);
             }
         }
-        public void AddSugarList(int item)
+        public void AddSugarList(double item)
         {
             for (int i = 0; i < item; i++)
             {
                 sugar.Add(new Sugar());
             }
         }
-        public void RemoveSugar(int item)
+        public void RemoveSugar(double item)
         {
             for(int i = 0; i < item; i++)
             {
-                sugar.Remove(new Sugar());
+                sugar.RemoveAt(0);
             }
         }
-        public void AddIceList(int item)
+        public void AddIceList(double item)
         {
             for (int i = 0; i < item; i++)
             {
                 ice.Add(new Ice());
             }
         }
-        public void RemoveIce(int item)
+        public void RemoveIce(double item)
         {
             for (int i = 0; i < item; i++)
             {
-                ice.Remove(new Ice());
+                ice.RemoveAt(0);
             }
         }
-        public void AddCupList(int item)
+        public void AddCupList(double item)
         {
             for (int i = 0; i < item; i++)
             {
                 cup.Add(new Cups());
             }
         }
-        public void RemoveCups(int item)
+        public void RemoveCups(double item)
         {
             for (int i = 0; i < item; i++)
             {
-                cup.Remove(new Cups());
+                cup.RemoveAt(0);
             }
         }
+        public double CheckCups(double inventoryCups)
+        {
+            double unroundedPitchers = inventoryCups / 6;
+            pitchers = Math.Floor(unroundedPitchers);
+           
+            return pitchers;
+        }
+       
+        public double CheckIceSugarLemons(double recipeAmount, double inventoryOfItem, double pitchers)
+        {
+            while (true)
+            {
+                double newInventoryOfItem = inventoryOfItem - (pitchers * recipeAmount);
+                if(newInventoryOfItem >= 0)
+                {
+                    return pitchers;
+                }
+                else
+                {
+                    pitchers = pitchers - 1;
+                }
+            }
+        }
+
+        
+
     }
 }

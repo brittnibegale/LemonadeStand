@@ -16,7 +16,7 @@ namespace LemonadeStand
         }
         public override int GetItemBoughtAmount()
         {
-            Console.WriteLine("Each cup costs .10 cents. There are 12 cups in a pitcher. Everyday you will make 5 pitchers. How many cups do you want to buy? Enter number values only.");
+            Console.WriteLine("Each cup costs .10 cents. There are 6 cups in a pitcher. How many cups do you want to buy? Enter number values only.");
             userInput = Console.ReadLine();
             while (!int.TryParse(userInput, out amountOfCups))
             {

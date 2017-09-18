@@ -8,7 +8,7 @@ namespace LemonadeStand
 {
     public class Weather
     {
-        int effectedCustomers;
+        double effectedCustomers;
         public Weather()
         {
         }
@@ -55,7 +55,7 @@ namespace LemonadeStand
             }
             return day;
         }
-        public int CompareWeatherToRecipe(List<int> recipe, int weatherDay)
+        public double CompareWeatherToRecipe(List<double> recipe, double weatherDay)
         {
             if (weatherDay == 1 || weatherDay == 3 || weatherDay == 7)
             {

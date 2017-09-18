@@ -8,36 +8,37 @@ namespace LemonadeStand
 {
     public class Day
     {
-        List<int> days = new List<int>();
-        public int updatedDayCount;
+        List<double> days = new List<double>();
+        public int updatedDayCount = 7;
         Weather today = new Weather();
         Customer todaysCustomers = new Customer();
-        int weatherDay;
-        int weatherEffectedCustomers;
-        int todaysActualTotalCustomers;
+        double weatherDay;
+        double weatherEffectedCustomers;
+        double todaysActualTotalCustomers;
 
 
         public Day()
         {
-            GenerateDay(8);
+            GenerateDay(7);
         }
         
 
-        public void GenerateDay(int day)
+        public void GenerateDay(double day)
         {
             for(int i = 0; i < day; i++)
             {
-                days.Add(new int());
+                days.Add(new double());
             }
 
         }
-        public void RemoveOneday()
+        public int RemoveOneday()
         {
             for (int i = 0; i < 1 ; i++)
             {
-                days.Remove(new int());
+                days.RemoveAt(0);
             }
             updatedDayCount = days.Count();
+            return updatedDayCount;
         }
 
         public void GetWeather()
@@ -73,11 +74,12 @@ namespace LemonadeStand
             }
         }
 
-        public void SendRecipeToWeatherAndCustomer(List<int>recipe)
+        public double SendRecipeToWeatherAndCustomer(List<double>recipe)
         {
             weatherEffectedCustomers = today.CompareWeatherToRecipe(recipe, weatherDay);
             todaysCustomers.CompareRecipeToCustomers(recipe, weatherEffectedCustomers);
             todaysActualTotalCustomers = todaysCustomers.SetAmountOfServedCustomers();
+            return todaysActualTotalCustomers;
         }
     }
 }

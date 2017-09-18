@@ -8,62 +8,63 @@ namespace LemonadeStand
 {
     public class Recipe
     {
-        int removeLemon;
-        int removeSugar;
-        int removeIce;
+        double removeLemon;
+        double removeSugar;
+        double removeIce;
         //int removeCups;
         string userInput;
-        int amountOfItem;
-        List<int> recipeList = new List<int>();
+        double amountOfItem;
+        double amountOfRecipe;
+        List<double> recipeList = new List<double>();
 
         public Recipe()
         {
 
         }
 
-        public int LemonRecipe(int currentAmountOfLemons)
+        public double LemonRecipe(double currentAmountOfLemons)
         {
-            Console.WriteLine("How many lemons would you like in each pitcher? Remember there are going to be 5 pitchers made each day. \n Enter how many lemons you would like in today's recipe.");
+            Console.WriteLine("How many lemons would you like in each pitcher? \n Enter how many lemons you would like in today's recipe.");
             userInput = Console.ReadLine();
-            int possibleRemoveLemon = GetRemoveAmount(userInput);
+            double possibleRemoveLemon = GetRemoveAmount(userInput);
             removeLemon = CheckForListAmount(currentAmountOfLemons, possibleRemoveLemon, .2);
             return removeLemon;
         }
 
-        public int SugarRecipe(int currentAmountOfSugar)
+        public double SugarRecipe(double currentAmountOfSugar)
         {
-            Console.WriteLine("How many packets of sugar would you like in each pitcher? Remember there are going to be 5 pitchers made each day. \n Enter how many sugar packets you would like in today's recipe.");
+            Console.WriteLine("How many packets of sugar would you like in each pitcher? \n Enter how many sugar packets you would like in today's recipe.");
             userInput = Console.ReadLine();
-            int possibleRemoveSugar = GetRemoveAmount(userInput);
+            double possibleRemoveSugar = GetRemoveAmount(userInput);
             removeSugar = CheckForListAmount(currentAmountOfSugar, possibleRemoveSugar, .1);
             return removeSugar;
         }
 
-        public int IceRecipe(int currentAmountOfIce)
+        public double IceRecipe(double currentAmountOfIce)
         {
-            Console.WriteLine("How many ice cubes would you like in each pitcher? Remember there are going to be 5 pitchers made each day. \n Enter how many ice cubes you would like in today's recipe.");
+            Console.WriteLine("How many ice cubes would you like in each pitcher? \n Enter how many ice cubes you would like in today's recipe.");
             userInput = Console.ReadLine();
-            int possibleRemovedIce = GetRemoveAmount(userInput);
+            double possibleRemovedIce = GetRemoveAmount(userInput);
             removeIce = CheckForListAmount(currentAmountOfIce, possibleRemovedIce, .1);
             return removeIce;
         }
 
-        public int GetRemoveAmount(string amount)
+        public double GetRemoveAmount(string amount)
         {
-            while (!int.TryParse(userInput, out amountOfItem))
+            while (!double.TryParse(userInput, out amountOfItem))
             {
                 Console.WriteLine("Invaild input. Please, enter a number.");
                 userInput = Console.ReadLine();
             }
-            int removeAmount = amountOfItem * 5;
+            double removeAmount = amountOfItem;
             return removeAmount;
         }
 
-        public int CheckForListAmount(int listAmount, int removeAmount, double costOfItem)//delete costofitem if i dont use this
+        public double CheckForListAmount(double listAmount, double removeAmount, double costOfItem)//delete costofitem if i dont use this
         {
             while (true)
             {
-                int newListAmount = listAmount - removeAmount;
+                double newListAmount = listAmount - removeAmount;
 
                 if (newListAmount >= 0)
                 {
@@ -71,7 +72,7 @@ namespace LemonadeStand
                 }
                 else
                 {
-                    Console.WriteLine("Sorry, you do not have enough of that item in your inventory to make 5 pitchers of lemonade with that quantity. You have " + listAmount + " in your inventory. Please enter a number equal to less than " + listAmount / 5);
+                    Console.WriteLine("Sorry, you do not have enough of that item in your inventory to make a pitcher lemonade with that quantity. You have " + listAmount + " in your inventory. Please enter a number equal to less than " + listAmount);
                     userInput = Console.ReadLine();
                     removeAmount = GetRemoveAmount(userInput);
                     return removeAmount;
@@ -79,13 +80,20 @@ namespace LemonadeStand
             }
         }
             //CheckForMoney(listAmount, costOfItem);//make this method if we want to check cost of item
-        public List<int> CreateList(int lemons, int sugar, int ice)
+        public List<double> CreateRecipeList(double lemons, double sugar, double ice, double cups)
         {
             recipeList.Add(lemons);
             recipeList.Add(sugar);
             recipeList.Add(ice);
+            recipeList.Add(cups);
             return recipeList;
 
+        }
+
+        public double AmountOfRecipesMade(double recipeBase, double pitchers)
+        {
+            amountOfRecipe = recipeBase * pitchers;
+            return amountOfRecipe;
         }
 
      

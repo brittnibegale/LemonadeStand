@@ -17,16 +17,23 @@ namespace LemonadeStand
             GetPlayersMoney();
             moneyBank = new Wallet();
         }
-        public abstract List<int> SetRecipe();
+        public abstract List<double> SetRecipe();
 
         public abstract void SetPlayersName();
 
         public abstract void GetPlayersMoney();
 
+        public abstract void AddInventory(double amountOfCups, double amountOfIce, double amountOfLemons, double amountOfSugar);
 
-        public abstract void AddInventory(int amountOfCups, int amountOfIce, int amountOfLemons, int amountOfSugar);
+        public abstract void RemoveInventory();
 
         public abstract void DisplayInventoryFromInventory();
+
+        public abstract double SetCostPerCup();
+
+        public abstract double CheckForPitcherAmount();
+
+        public abstract void CalculateInventoryLoss(double pitchers);
 
     }
 }
