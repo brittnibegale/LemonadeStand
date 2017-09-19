@@ -33,6 +33,7 @@ namespace LemonadeStand
         }
         public void StartGame()
         {
+            
             Console.WriteLine("Welcome to Lemonade Stand! This game lasts for a week if you can make it! \n Everyday has different weather, which will effect how many people buy your lemonade.\n You have the ability to buy items and change the recipe to optimize how many people buy your lemonade.\n Hit ENTER to continue.");
             Console.ReadLine();
             player1 = new Human();
@@ -83,6 +84,7 @@ namespace LemonadeStand
 
         public void MainMenu(Player player1, Day day)
         {
+            Console.Clear();
             Console.WriteLine("What would you like to do? Go to the store? See today's weather? See the inventory you currently have? Start game?\n Please enter store, weather, inventory, game");
             userInput = Console.ReadLine().ToLower();
             userInput = CheckMenuInput(userInput);
@@ -90,18 +92,22 @@ namespace LemonadeStand
             {
                 case "store":
                     GoToStore(player1, day);
+                    Console.Clear();
                     break;
 
                 case "weather":
                     DisplayWeather(player1, day);
+                    Console.Clear();
                     break;
 
                 case "inventory":
                     ShowInventory(player1, day);
+                    Console.Clear();
                     break;
 
                 case "game":
                     GamePlay(player1, day);
+                    Console.Clear();
                     break;
 
                 default:
@@ -147,6 +153,7 @@ namespace LemonadeStand
             day.GetWeather();
             List<double> recipeList = player1.SetRecipe();
             costOfCup = player1.SetCostPerCup();
+            Console.Clear();
             countOfDaysCustomers = day.SendRecipeToWeatherAndCustomer(recipeList);
             pitchers = player.CheckForPitcherAmount();
             FindHowManyCustomers();
@@ -167,12 +174,16 @@ namespace LemonadeStand
             Store store = new Store(player);
             DisplayBankBalance(player.moneyBank.money);
             amountOfLemons = store.BuyLemons(player);
+            Console.Clear();
             DisplayBankBalance(player.moneyBank.money);
             amountOfCups = store.BuyCups(player);
+            Console.Clear();
             DisplayBankBalance(player.moneyBank.money);
             amountOfIce = store.BuyIce(player);
+            Console.Clear();
             DisplayBankBalance(player.moneyBank.money);
             amountOfSugar = store.BuySugar(player);
+            Console.Clear();
             DisplayBankBalance(player.moneyBank.money);
             player.AddInventory(amountOfCups, amountOfIce, amountOfLemons, amountOfSugar);
             player.DisplayInventoryFromInventory();
