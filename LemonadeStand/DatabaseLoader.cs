@@ -36,7 +36,13 @@ namespace LemonadeStand
             {
                 Console.WriteLine(e);
             }
+            finally
+            {
+                //reader.Close();
+                connection.Close();
+            }
             Console.ReadLine();
+            
         }
     }
 }

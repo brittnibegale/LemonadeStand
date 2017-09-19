@@ -28,8 +28,12 @@ namespace LemonadeStand
             {
                 Console.WriteLine(e);
             }
+            finally
+            {
+                connection.Close();
+            }
             Console.ReadLine();
-            //add a finally to close
+            
         }
     }
 }
