@@ -151,10 +151,10 @@ namespace LemonadeStand
             Console.Clear();
             DisplayBankBalance(player.moneyBank.money);
             player.AddInventory(amountOfCups, amountOfIce, amountOfLemons, amountOfSugar);
-            CheckForEnoughInventory(player.inventoryList.lemons.Count(), 1);
-            CheckForEnoughInventory(player.inventoryList.sugar.Count(), 1);
-            CheckForEnoughInventory(player.inventoryList.ice.Count(), 1);
-            CheckForEnoughInventory(player.inventoryList.cup.Count(), 6);
+            CheckForEnoughInventory(player.inventoryList.lemons.Count, 1);
+            CheckForEnoughInventory(player.inventoryList.sugar.Count, 1);
+            CheckForEnoughInventory(player.inventoryList.ice.Count, 1);
+            CheckForEnoughInventory(player.inventoryList.cup.Count, 6);
             MainMenu(player, day);
         }
 
@@ -230,7 +230,7 @@ namespace LemonadeStand
             Console.ReadLine();
             Console.Clear();
             DatabaseSaver save = new DatabaseSaver();
-            save.Save(player1.name, player1.moneyBank.money, day.updatedDayCount, player1.inventoryList.lemons.Count(), player1.inventoryList.ice.Count(), player1.inventoryList.sugar.Count(), player1.inventoryList.cup.Count());
+            save.Save(player1.name, player1.moneyBank.money, day.updatedDayCount, player1.inventoryList.lemons.Count, player1.inventoryList.ice.Count, player1.inventoryList.sugar.Count, player1.inventoryList.cup.Count);
             DatabaseLoader load = new DatabaseLoader();
             load.LoadGame();
         }
