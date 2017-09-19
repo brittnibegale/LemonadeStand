@@ -18,10 +18,12 @@ namespace LemonadeStand
         {
 
         }
+
         public Store(Player player1)
         {
             this.player = player1;
         }
+
         public double BuyLemons(Player player)
         {
             Item lemonBoughtAmount = new Lemons();
@@ -60,6 +62,7 @@ namespace LemonadeStand
             player.moneyBank.money = CheckForMoney(costOfItems, player.moneyBank.money);
             return player.moneyBank.money;
         }
+
         public double CheckForMoney(double costOfItems, double moneyBank)
         {
             moneyBank = moneyBank - costOfItems;

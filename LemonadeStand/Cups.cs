@@ -10,10 +10,12 @@ namespace LemonadeStand
     {
         int amountOfCups;
         string userInput;
+
         public Cups()
         {
 
         }
+
         public override int GetItemBoughtAmount()
         {
             Console.WriteLine("Each cup costs .10 cents. There are 6 cups in a pitcher. How many cups do you want to buy? Enter number values only.");
@@ -24,7 +26,6 @@ namespace LemonadeStand
                 userInput = Console.ReadLine();
             }
             return amountOfCups;
-
         }
     }
 }

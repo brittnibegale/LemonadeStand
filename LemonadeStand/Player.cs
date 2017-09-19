@@ -17,6 +17,7 @@ namespace LemonadeStand
             GetPlayersMoney();
             moneyBank = new Wallet();
         }
+
         public abstract List<double> SetRecipe();
 
         public abstract void SetPlayersName();

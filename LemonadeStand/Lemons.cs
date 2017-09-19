@@ -10,10 +10,12 @@ namespace LemonadeStand
     {
         string userInput;
         int amountOfLemons;
+
         public Lemons()
         {
 
         }
+
         public override int GetItemBoughtAmount()
         {
             Console.WriteLine("Each lemon costs .20 cents. How many lemons do you want to buy? Enter number values only.");

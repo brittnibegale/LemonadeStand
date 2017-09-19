@@ -10,10 +10,12 @@ namespace LemonadeStand
     {
         string userInput;
         int amountOfSugar;
+
         public Sugar()
         {
 
         }
+
         public override int GetItemBoughtAmount()
         {
             Console.WriteLine("Each sugar packet costs .10 cents. How many sugar packets do you want to buy? Enter number values only.");
@@ -24,7 +26,6 @@ namespace LemonadeStand
                 userInput = Console.ReadLine();
             }
             return amountOfSugar;
-
         }
     }
 }

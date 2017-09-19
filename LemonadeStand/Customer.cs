@@ -34,13 +34,12 @@ namespace LemonadeStand
             {
                 totaleffectedCustomers = weatherEffectedCustomers + 10;
             }
-
         }
+
         public double SetAmountOfServedCustomers()
         {
             totalCustomersThatBuy = numberOfPotentialCustomers - totaleffectedCustomers;
             return totalCustomersThatBuy;
         }
-
     }
 }

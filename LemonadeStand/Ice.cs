@@ -10,10 +10,12 @@ namespace LemonadeStand
     {
         int amountOfIce;
         string userInput;
+
         public Ice()
         {
 
         }
+
         public override int GetItemBoughtAmount()
         {
             Console.WriteLine("Each ice cube costs .10 cents. How many ice cubes do you want to buy? Enter number values only.");
@@ -24,7 +26,6 @@ namespace LemonadeStand
                 userInput = Console.ReadLine();
             }
             return amountOfIce;
-
         }
     }
 }

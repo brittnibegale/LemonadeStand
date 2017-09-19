@@ -33,6 +33,7 @@ namespace LemonadeStand
         {
 
         }
+
         public void StartGame()
         {
             
@@ -45,44 +46,6 @@ namespace LemonadeStand
             //typeOfGame = Console.ReadLine().ToLower();
             //DetermineGameType(typeOfGame);
         }
-
-        //public void DetermineGameType(string typeOfGame)
-        //{
-        //    while (true)
-        //    {
-        //        if (typeOfGame == "single" || typeOfGame == "single player" || typeOfGame == "singleplayer" || typeOfGame == "single player mode" || typeOfGame == "single mode")
-        //        {
-        //            player1 = new Human();
-        //            MainMenu(player1);
-        //            break;//change this if you want to play again
-        // }
-        //else if (typeOfGame == "multi" || typeOfGame == "multi player" || typeOfGame == "multiplayer" || typeOfGame == "multiplayer mode" || typeOfGame == "multi player mode")
-        //{
-        //    Console.WriteLine("Would you like to play against a computer or your friends? Please, choose computer or friends");
-        //    multiplayerVersion = Console.ReadLine().ToLower();
-        //    DetermineMultiplayerGame(multiplayerVersion);
-        //}
-        //        else
-        //        {
-        //            Console.WriteLine("Please type single player or multi player.");
-        //            typeOfGame = Console.ReadLine().ToLower();
-        //        }
-        //    }
-        //}
-
-        //public void OnePlayerGame(Player player1)
-        //{
-        //    Day day1 = new Day();
-        //    day1.Day1();
-        //    player1.DisplayInventoryFromInventory();
-
-        //    player1.AddInventory(amountOfCups, amountOfIce, amountOfLemons, amountOfSugar);
-        //    //check for 60 cups and math for if they can continue playing with cost of cups needed to get to 60 and moneybank.
-        //    player1.SetRecipe();
-
-
-        //}
-     
 
         public void MainMenu(Player player1, Day day)
         {
@@ -133,7 +96,6 @@ namespace LemonadeStand
                     userInput = Console.ReadLine();
                 }
             }
-
         }
 
         public void ShowInventory(Player player, Day day)
@@ -150,7 +112,6 @@ namespace LemonadeStand
 
         public void GamePlay(Player player, Day day)
         {
-            //load game here
             player1.DisplayInventoryFromInventory();
             day.GetWeather();
             List<double> recipeList = player1.SetRecipe();
@@ -196,6 +157,7 @@ namespace LemonadeStand
             CheckForEnoughInventory(player.inventoryList.cup.Count(), 6);
             MainMenu(player, day);
         }
+
         public void DisplayBankBalance(double money)
         {
             Console.WriteLine("Your current bank balance is: $ " + money + ". Hit ENTER to continue.");
@@ -206,10 +168,12 @@ namespace LemonadeStand
         {
             dailyProfit = costOfCup * helpedCustomers;
         }
+
         public void CalculateDaysGross()
         {
             player1.moneyBank.money = dailyProfit + player1.moneyBank.money;
         }
+
         public void CheckDaysLeft()
         {
             if (daysLeftInGame >= 1)
@@ -258,12 +222,13 @@ namespace LemonadeStand
                 Console.ReadLine();
                 GoToStore(player1, day);
             }
-            
         }
+
         public void EndGameRemarks(string endComments)
         {
             Console.WriteLine(endComments);
             Console.ReadLine();
+            Console.Clear();
             DatabaseSaver save = new DatabaseSaver();
             save.Save(player1.name, player1.moneyBank.money, day.updatedDayCount, player1.inventoryList.lemons.Count(), player1.inventoryList.ice.Count(), player1.inventoryList.sugar.Count(), player1.inventoryList.cup.Count());
             DatabaseLoader load = new DatabaseLoader();
@@ -271,7 +236,7 @@ namespace LemonadeStand
         }
 
 
-        
+
 
         //public void DetermineMultiplayerGame(string multiplayerVersion)
         //{
@@ -303,6 +268,41 @@ namespace LemonadeStand
         //public void DetermineHowManyPlayers(string multiplayerPlayerNumber)
         //{
 
+        //}
+
+        //public void DetermineGameType(string typeOfGame)
+        //{
+        //    while (true)
+        //    {
+        //        if (typeOfGame == "single" || typeOfGame == "single player" || typeOfGame == "singleplayer" || typeOfGame == "single player mode" || typeOfGame == "single mode")
+        //        {
+        //            player1 = new Human();
+        //            MainMenu(player1);
+        //            break;//change this if you want to play again
+        // }
+        //else if (typeOfGame == "multi" || typeOfGame == "multi player" || typeOfGame == "multiplayer" || typeOfGame == "multiplayer mode" || typeOfGame == "multi player mode")
+        //{
+        //    Console.WriteLine("Would you like to play against a computer or your friends? Please, choose computer or friends");
+        //    multiplayerVersion = Console.ReadLine().ToLower();
+        //    DetermineMultiplayerGame(multiplayerVersion);
+        //}
+        //        else
+        //        {
+        //            Console.WriteLine("Please type single player or multi player.");
+        //            typeOfGame = Console.ReadLine().ToLower();
+        //        }
+        //    }
+        //}
+
+        //public void OnePlayerGame(Player player1)
+        //{
+        //    Day day1 = new Day();
+        //    day1.Day1();
+        //    player1.DisplayInventoryFromInventory();
+
+        //    player1.AddInventory(amountOfCups, amountOfIce, amountOfLemons, amountOfSugar);
+        //    //check for 60 cups and math for if they can continue playing with cost of cups needed to get to 60 and moneybank.
+        //    player1.SetRecipe();
         //}
     }
 }

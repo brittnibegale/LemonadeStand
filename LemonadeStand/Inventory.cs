@@ -11,10 +11,12 @@ namespace LemonadeStand
         public List<Lemons> lemons = new List<Lemons>();
         public List<Ice> ice = new List<Ice>();
         public List<Sugar> sugar = new List<Sugar>();
-        public List<Cups> cup = new List<Cups>();// figure out how to move this to the constructor
+        public List<Cups> cup = new List<Cups>();
         double pitchers;
+
         public Inventory()
         {
+
         }
         
         public void DisplayInventory()
@@ -30,6 +32,7 @@ namespace LemonadeStand
                 lemons.Add(new Lemons());
             }
         }
+
         public void RemoveLemons(double item)
         {
             for (int i = 0; i < item; i++)
@@ -37,6 +40,7 @@ namespace LemonadeStand
                 lemons.RemoveAt(0);
             }
         }
+
         public void AddSugarList(double item)
         {
             for (int i = 0; i < item; i++)
@@ -44,6 +48,7 @@ namespace LemonadeStand
                 sugar.Add(new Sugar());
             }
         }
+
         public void RemoveSugar(double item)
         {
             for(int i = 0; i < item; i++)
@@ -51,6 +56,7 @@ namespace LemonadeStand
                 sugar.RemoveAt(0);
             }
         }
+
         public void AddIceList(double item)
         {
             for (int i = 0; i < item; i++)
@@ -58,6 +64,7 @@ namespace LemonadeStand
                 ice.Add(new Ice());
             }
         }
+
         public void RemoveIce(double item)
         {
             for (int i = 0; i < item; i++)
@@ -65,6 +72,7 @@ namespace LemonadeStand
                 ice.RemoveAt(0);
             }
         }
+
         public void AddCupList(double item)
         {
             for (int i = 0; i < item; i++)
@@ -72,6 +80,7 @@ namespace LemonadeStand
                 cup.Add(new Cups());
             }
         }
+
         public void RemoveCups(double item)
         {
             for (int i = 0; i < item; i++)
@@ -79,6 +88,7 @@ namespace LemonadeStand
                 cup.RemoveAt(0);
             }
         }
+
         public double CheckCups(double inventoryCups)
         {
             double unroundedPitchers = inventoryCups / 6;
@@ -102,8 +112,5 @@ namespace LemonadeStand
                 }
             }
         }
-
-        
-
     }
 }

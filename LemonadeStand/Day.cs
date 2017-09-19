@@ -16,12 +16,10 @@ namespace LemonadeStand
         double weatherEffectedCustomers;
         double todaysActualTotalCustomers;
 
-
         public Day()
         {
             GenerateDay(7);
         }
-        
 
         public void GenerateDay(double day)
         {
@@ -31,6 +29,7 @@ namespace LemonadeStand
             }
 
         }
+
         public int RemoveOneday()
         {
             for (int i = 0; i < 1 ; i++)

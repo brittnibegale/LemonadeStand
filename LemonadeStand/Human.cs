@@ -27,7 +27,6 @@ namespace LemonadeStand
         public Human()
         {
             
-            
         }
       
         public override List<double> SetRecipe()
@@ -40,11 +39,13 @@ namespace LemonadeStand
 
             return recipeList;
         }
+
         public override void SetPlayersName()
         {
             Console.WriteLine("What is your name?");
             name = Console.ReadLine();
         }
+
         public override void GetPlayersMoney()
         {
             Wallet moneyBank = new Wallet();
@@ -88,8 +89,6 @@ namespace LemonadeStand
         {
             inventoryList.DisplayInventory();
         }
-
-
 
         public override double SetCostPerCup()
         {

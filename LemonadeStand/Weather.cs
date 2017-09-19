@@ -9,14 +9,11 @@ namespace LemonadeStand
     public class Weather
     {
         double effectedCustomers;
+
         public Weather()
-        {
-        }
-        public Weather(int day)
         {
 
         }
-        
 
         public int DisplayWeather(int day)
         {
@@ -55,6 +52,7 @@ namespace LemonadeStand
             }
             return day;
         }
+
         public double CompareWeatherToRecipe(List<double> recipe, double weatherDay)
         {
             if (weatherDay == 1 || weatherDay == 3 || weatherDay == 7)

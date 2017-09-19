@@ -11,7 +11,9 @@ namespace LemonadeStand
         
         public Item()
         {
+
         }
+
         public abstract int GetItemBoughtAmount();
        
     }
