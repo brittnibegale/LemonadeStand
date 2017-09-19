@@ -47,7 +47,7 @@ namespace LemonadeStand
             //DetermineGameType(typeOfGame);
         }
 
-        public void MainMenu(Player player1, Day day)
+        private void MainMenu(Player player1, Day day)
         {
             Console.Clear();
             Console.WriteLine("What would you like to do? Go to the store? See today's weather? See the inventory you currently have? Start game?\n Please enter store, weather, inventory, game");
@@ -82,7 +82,7 @@ namespace LemonadeStand
             }
         }
 
-        public string CheckMenuInput(string userInput)
+        private string CheckMenuInput(string userInput)
         {
             while (true)
             {
@@ -98,19 +98,19 @@ namespace LemonadeStand
             }
         }
 
-        public void ShowInventory(Player player, Day day)
+        private void ShowInventory(Player player, Day day)
         {
             player.DisplayInventoryFromInventory();
             MainMenu(player, day);
         }
 
-        public void DisplayWeather(Player player, Day day)
+        private void DisplayWeather(Player player, Day day)
         {
             day.GetWeather();
             MainMenu(player, day);
         }
 
-        public void GamePlay(Player player, Day day)
+        private void GamePlay(Player player, Day day)
         {
             player1.DisplayInventoryFromInventory();
             day.GetWeather();
@@ -132,7 +132,7 @@ namespace LemonadeStand
             MainMenu(player, day);
         }
 
-        public void GoToStore(Player player, Day day)
+        private void GoToStore(Player player, Day day)
         {
             Store store = new Store(player);
             Console.Clear();
@@ -158,23 +158,23 @@ namespace LemonadeStand
             MainMenu(player, day);
         }
 
-        public void DisplayBankBalance(double money)
+        private void DisplayBankBalance(double money)
         {
             Console.WriteLine("Your current bank balance is: $ " + money + ". Hit ENTER to continue.");
             Console.ReadLine();
         }
        
-        public void CalculateDaysProfit()
+        private void CalculateDaysProfit()
         {
             dailyProfit = costOfCup * helpedCustomers;
         }
 
-        public void CalculateDaysGross()
+        private void CalculateDaysGross()
         {
             player1.moneyBank.money = dailyProfit + player1.moneyBank.money;
         }
 
-        public void CheckDaysLeft()
+        private void CheckDaysLeft()
         {
             if (daysLeftInGame >= 1)
             {
@@ -188,7 +188,7 @@ namespace LemonadeStand
             }
         }
 
-        public void FindHowManyCustomers()
+        private void FindHowManyCustomers()
         {
             double possibleHelpedCustomers = 6 * pitchers;
             if (possibleHelpedCustomers >= countOfDaysCustomers)
@@ -201,7 +201,7 @@ namespace LemonadeStand
             }
         }
 
-        public void CheckForEnoughMoneyToContinue()
+        private void CheckForEnoughMoneyToContinue()
         {
             if (player1.moneyBank.money <= 0)
             {
@@ -214,7 +214,7 @@ namespace LemonadeStand
             }
         }
 
-        public void CheckForEnoughInventory(int listCount, double amountNeeded)
+        private void CheckForEnoughInventory(int listCount, double amountNeeded)
         {
             if(listCount < amountNeeded)
             {
@@ -224,7 +224,7 @@ namespace LemonadeStand
             }
         }
 
-        public void EndGameRemarks(string endComments)
+        private void EndGameRemarks(string endComments)
         {
             Console.WriteLine(endComments);
             Console.ReadLine();

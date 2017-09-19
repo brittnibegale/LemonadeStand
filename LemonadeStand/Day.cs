@@ -21,7 +21,7 @@ namespace LemonadeStand
             GenerateDay(7);
         }
 
-        public void GenerateDay(double day)
+        private void GenerateDay(double day)
         {
             for(int i = 0; i < day; i++)
             {

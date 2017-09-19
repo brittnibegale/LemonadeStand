@@ -56,14 +56,14 @@ namespace LemonadeStand
             return boughtCups;
         }
 
-        public double GetCost(double item, double cost, Player player)
+        private double GetCost(double item, double cost, Player player)
         {
             costOfItems = item * cost;
             player.moneyBank.money = CheckForMoney(costOfItems, player.moneyBank.money);
             return player.moneyBank.money;
         }
 
-        public double CheckForMoney(double costOfItems, double moneyBank)
+        private double CheckForMoney(double costOfItems, double moneyBank)
         {
             moneyBank = moneyBank - costOfItems;
             while (moneyBank >= 0)
@@ -83,7 +83,7 @@ namespace LemonadeStand
             }
         }
 
-        public void WillGameContinue(string userInput)
+        private void WillGameContinue(string userInput)
         {
             if (userInput == "no")
             {

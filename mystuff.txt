@@ -1,0 +1,3 @@
+1. Inheritance is used from item to lemon, ice, cup, sugar. They have item as a parent class. 
+
+2. Data Abstraction is occuring in the game class for the method main menu and a bunch of other methods since they are private.
