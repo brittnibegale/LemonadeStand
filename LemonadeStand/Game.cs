@@ -24,6 +24,8 @@ namespace LemonadeStand
         double helpedCustomers;
         Player player1;
         Day day;
+        DatabaseSaver save;
+        DatabaseLoader load;
         //Player player2;
         //Player player3;
         //Player player4;
@@ -152,6 +154,7 @@ namespace LemonadeStand
             player1.DisplayInventoryFromInventory();
             day.GetWeather();
             List<double> recipeList = player1.SetRecipe();
+            Console.Clear();
             costOfCup = player1.SetCostPerCup();
             Console.Clear();
             countOfDaysCustomers = day.SendRecipeToWeatherAndCustomer(recipeList);
@@ -165,13 +168,14 @@ namespace LemonadeStand
             CheckDaysLeft();
             Console.WriteLine("You have " + day.updatedDayCount + " days left in the game. \n Hit ENTER to continue.");
             Console.ReadLine();
-            //Save game here
             MainMenu(player, day);
         }
 
         public void GoToStore(Player player, Day day)
         {
             Store store = new Store(player);
+            Console.Clear();
+            player.DisplayInventoryFromInventory();
             DisplayBankBalance(player.moneyBank.money);
             amountOfLemons = store.BuyLemons(player);
             Console.Clear();
@@ -186,7 +190,6 @@ namespace LemonadeStand
             Console.Clear();
             DisplayBankBalance(player.moneyBank.money);
             player.AddInventory(amountOfCups, amountOfIce, amountOfLemons, amountOfSugar);
-            player.DisplayInventoryFromInventory();
             CheckForEnoughInventory(player.inventoryList.lemons.Count(), 1);
             CheckForEnoughInventory(player.inventoryList.sugar.Count(), 1);
             CheckForEnoughInventory(player.inventoryList.ice.Count(), 1);
@@ -261,7 +264,12 @@ namespace LemonadeStand
         {
             Console.WriteLine(endComments);
             Console.ReadLine();
+            DatabaseSaver save = new DatabaseSaver();
+            save.Save(player1.name, player1.moneyBank.money, day.updatedDayCount, player1.inventoryList.lemons.Count(), player1.inventoryList.ice.Count(), player1.inventoryList.sugar.Count(), player1.inventoryList.cup.Count());
+            DatabaseLoader load = new DatabaseLoader();
+            load.LoadGame();
         }
+
 
         
 

@@ -13,7 +13,7 @@ namespace LemonadeStand
 
         public DatabaseLoader()
         {
-            connection = new SqlConnection("Server=brit-PC;Database=LemonadeStand;Integrated Security=true");
+            connection = new SqlConnection("Server=desktop-7V83TKI; Database=LemonadeStand;Integrated Security=true");
         }
 
         public void LoadGame()
@@ -21,12 +21,12 @@ namespace LemonadeStand
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("SELECT Winner_Name, Loser_Name, Winner_Score, Loser_Score FROM Scores", connection);
+                SqlCommand command = new SqlCommand("SELECT name, moneyInWallet, dayOfGame, lemons, ice, sugar, cups FROM LemonadeStand", connection);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    Console.WriteLine("Winner Name: {0} \nLoser Name: {1} \nWinner Score: {2} \nLoser Score: {3}",
-                        reader.GetString(0), reader.GetString(1), reader.GetInt32(2), reader.GetInt32(3));
+                    Console.WriteLine("name: {0} \nmoneyInWallet: {1} \ndayOfGame: {2} \nlemons: {3} \nice: {4} \nsugar: {5} \ncups: {6}",
+                        reader.GetString(0), reader.GetFloat(1), reader.GetInt32(2), reader.GetFloat(3), reader.GetFloat(4), reader.GetFloat(5), reader.GetFloat(6));
                     Console.WriteLine("*******************************");
                 }
                 reader.Close();

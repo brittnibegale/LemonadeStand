@@ -12,10 +12,6 @@ namespace LemonadeStand
         public List<Ice> ice = new List<Ice>();
         public List<Sugar> sugar = new List<Sugar>();
         public List<Cups> cup = new List<Cups>();// figure out how to move this to the constructor
-        int neededLemons;
-        int neededSugar;
-        int neededIce;
-        int neededCups;
         double pitchers;
         public Inventory()
         {
@@ -23,7 +19,7 @@ namespace LemonadeStand
         
         public void DisplayInventory()
         {
-            Console.WriteLine("You have " + lemons.Count + " lemons in your inventory." + "You have " + ice.Count + " ice cubes in your inventory." + "You have " + sugar.Count + " packets of sugar in your inventory." + "You have " + cup.Count + " cups in your inventory.");
+            Console.WriteLine("You have " + lemons.Count + " lemons in your inventory." + " \n You have " + ice.Count + " ice cubes in your inventory." + "\n You have " + sugar.Count + " packets of sugar in your inventory." + "\n You have " + cup.Count + " cups in your inventory.");
             Console.ReadLine();
         }
 

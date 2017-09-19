@@ -12,14 +12,14 @@ namespace LemonadeStand
         SqlConnection connection;
         public DatabaseSaver()
         {
-            connection = new SqlConnection("Server=DESKTOP-7V83TKI; Database=LemonadeStand;Integrated Security=true");
+            connection = new SqlConnection("Server=desktop-7V83TKI; Database=LemonadeStand;Integrated Security=true");
         }
-        public void Save(string winnerName, string loserName, int winnerScore, int loserScore)
+        public void Save(string name, double moneyInWallet, int dayOfGame, double lemons, double ice, double sugar, double cups)
         {
             try
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand($"INSERT INTO Scores VALUES ('{winnerName}', '{loserName}', '{winnerScore}', '{loserScore}')", connection);
+                SqlCommand command = new SqlCommand($"INSERT INTO Scores VALUES ('{name}', '{moneyInWallet}', '{dayOfGame}', '{lemons}', '{ice}','{sugar}', '{cups}')", connection);
                 command.ExecuteNonQuery();
                 connection.Close();
                 Console.WriteLine("Game Saved");
@@ -29,6 +29,7 @@ namespace LemonadeStand
                 Console.WriteLine(e);
             }
             Console.ReadLine();
+            //add a finally to close
         }
     }
 }
